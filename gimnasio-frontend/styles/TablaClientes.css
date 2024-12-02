@@ -1,0 +1,150 @@
+/* TablaClientes Styles */
+.tabla-clientes-container {
+    background-color: #ffffff;
+    border-radius: 0.75rem;
+    box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+    overflow: hidden;
+}
+
+.tabla-clientes {
+    width: 100%;
+    border-collapse: separate;
+    border-spacing: 0;
+}
+
+.tabla-header {
+    background-color: #f9fafb;
+}
+
+.tabla-header th {
+    padding: 1rem;
+    text-align: left;
+    color: #374151;
+    font-weight: 600;
+    text-transform: uppercase;
+    font-size: 0.875rem;
+    border-bottom: 1px solid #e5e7eb;
+}
+
+.tabla-row {
+    transition: background-color 0.3s ease;
+}
+
+.tabla-row:hover {
+    background-color: #f3f4f6;
+}
+
+.tabla-row td {
+    padding: 1rem;
+    border-bottom: 1px solid #e5e7eb;
+    color: #374151;
+}
+
+.tabla-acciones {
+    display: flex;
+    gap: 0.75rem;
+    justify-content: center;
+}
+
+.tabla-boton {
+    padding: 0.5rem;
+    border-radius: 0.5rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.3s ease;
+}
+
+.tabla-boton-editar {
+    background-color: #f3f4f6;
+    color: #4f46e5;
+}
+
+.tabla-boton-editar:hover {
+    background-color: #e5e7eb;
+}
+
+.tabla-boton-eliminar {
+    background-color: #fee2e2;
+    color: #ef4444;
+}
+
+.tabla-boton-eliminar:hover {
+    background-color: #fecaca;
+}
+
+.tabla-vacia {
+    text-align: center;
+    padding: 2rem;
+    color: #6b7280;
+}
+
+.tabla-paginacion {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    padding: 1rem;
+    gap: 1rem;
+}
+
+.tabla-paginacion-boton {
+    padding: 0.5rem 1rem;
+    border-radius: 0.5rem;
+    border: 1px solid #d1d5db;
+    background-color: #ffffff;
+    color: #374151;
+    transition: all 0.3s ease;
+}
+
+.tabla-paginacion-boton:hover {
+    background-color: #f9fafb;
+}
+
+.tabla-paginacion-boton:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .tabla-clientes {
+        font-size: 0.875rem;
+    }
+
+    .tabla-header th,
+    .tabla-row td {
+        padding: 0.75rem;
+    }
+
+    .tabla-acciones {
+        flex-direction: column;
+        gap: 0.5rem;
+    }
+}
+
+/* Empty State Styles */
+.tabla-empty-state {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 3rem;
+    text-align: center;
+}
+
+.tabla-empty-icon {
+    margin-bottom: 1.5rem;
+    color: #9ca3af;
+}
+
+.tabla-empty-title {
+    font-size: 1.25rem;
+    font-weight: 600;
+    color: #374151;
+    margin-bottom: 0.5rem;
+}
+
+.tabla-empty-subtitle {
+    color: #6b7280;
+    margin-bottom: 1.5rem;
+}
