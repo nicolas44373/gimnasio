@@ -20,20 +20,24 @@ const AsistenciaForm: React.FC = () => {
         e.preventDefault();
         setError('');
         setResultado(null);
-
+    
         if (!dni) {
             setError('Por favor, ingresa un DNI válido.');
             return;
         }
-
+    
         try {
-            // Llamar a la ruta de backend para obtener la asistencia
-            const response = await axios.get(`http://localhost:5000/asistencias/buscar?dni=${dni}`);
-            setResultado(response.data);
+            // Buscar información del cliente
+            const buscarResponse = await axios.get(`http://localhost:5000/asistencias/buscar?dni=${dni}`);
+            setResultado(buscarResponse.data);
+    
+            // Registrar la asistencia
+            await axios.post('http://localhost:5000/asistencias/registrar', { dni });
         } catch (err: any) {
-            setError(err.response?.data?.error || 'Hubo un error al buscar la asistencia');
+            setError(err.response?.data?.error || 'Hubo un error al buscar o registrar la asistencia.');
         }
     };
+    
 
     // Función para formatear la fecha a DD/MM/AA
     const formatearFecha = (fecha: string): string => {

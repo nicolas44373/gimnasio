@@ -73,4 +73,42 @@ const buscarAsistencia = async (req, res) => {
     }
 };
 
-module.exports = { buscarAsistencia };
+const registrarAsistencia = async (req, res) => {
+    const { dni } = req.body;
+
+    if (!dni) {
+        return res.status(400).json({ error: 'El DNI es obligatorio.' });
+    }
+
+    try {
+        // Verificar si el cliente existe
+        const clienteQuery = `
+            SELECT id FROM clientes WHERE dni = ?
+        `;
+        const [clienteResults] = await promisePool.query(clienteQuery, [dni]);
+
+        if (clienteResults.length === 0) {
+            return res.status(404).json({ error: 'Cliente no encontrado.' });
+        }
+
+        const clienteId = clienteResults[0].id;
+
+        // Registrar la asistencia en la tabla `asistencias`
+        const fechaActual = new Date();
+        const asistenciaQuery = `
+            INSERT INTO asistencias (id_cliente, fecha)
+            VALUES (?, ?)
+        `;
+        await promisePool.query(asistenciaQuery, [clienteId, fechaActual]);
+
+        res.status(201).json({ message: 'Asistencia registrada con éxito.' });
+    } catch (error) {
+        console.error('Error al registrar asistencia:', error);
+        res.status(500).json({ error: 'Hubo un error al registrar la asistencia.' });
+    }
+};
+
+module.exports = {
+    buscarAsistencia,
+    registrarAsistencia, // Exportar la nueva función
+};
